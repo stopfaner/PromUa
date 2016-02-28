@@ -2,11 +2,9 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="EntityManager" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>ua.prom.models.Location</class>
-       <class>ua.prom.models.Company</class>
-       <!--  <class>ua.prom.models.Group</class>
-        <class>ua.prom.models.ProbationBindingFactors</class>-->
+        <class>ua.prom.models.Group</class>
         <class>ua.prom.models.Product</class>
+        <class>ua.prom.models.ProductId</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.20.2:5432/kazprom"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>

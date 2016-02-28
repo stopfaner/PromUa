@@ -12,7 +12,7 @@ import java.net.URI;
  */
 public class MainLoader {
 
-    public static String HOST = "http://localhost:8084/";
+    public static String HOST = "http://192.168.32.251:2021/";
 
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers

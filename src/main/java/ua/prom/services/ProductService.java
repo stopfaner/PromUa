@@ -2,7 +2,9 @@ package ua.prom.services;
 
 import ua.prom.core.EntityConfig;
 import ua.prom.models.Company;
+import ua.prom.models.Group;
 import ua.prom.models.Product;
+import ua.prom.models.ProductId;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Table;
@@ -43,15 +45,22 @@ public class ProductService {
         return query.getResultList();
     }
 
-    public Long getProductCount(Long companyId) {
-        CriteriaBuilder criteriaBuilder = eManager.getCriteriaBuilder();
-        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
-        criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(Product.class)));
-        Root<Product> from = criteriaQuery.from(Product.class);
-        Predicate condition = criteriaBuilder.equal(from.get("companyId"), companyId);
-        criteriaQuery.where(condition);
+    public Group getGroupById(Long id) {
+        return eManager.find(Group.class, id);
+    }
 
-        return eManager.createQuery(criteriaQuery).getSingleResult();
+    public ProductId getProductById(Long id) {
+        return eManager.find(ProductId.class, id);
+    }
+
+    public List<Product> getProductByTag(String pattern, int limit, int offset) {
+        TypedQuery<Product> query = eManager.createQuery(
+                "SELECT c FROM Product c WHERE c.keyWords LIKE :pattern", Product.class);
+        query.setFirstResult(offset);
+        query.setMaxResults(limit);
+        query.setParameter("pattern", "%" + pattern + "%");
+
+        return query.getResultList();
     }
 
 }

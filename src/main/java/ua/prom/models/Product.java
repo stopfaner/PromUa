@@ -22,15 +22,6 @@ public class Product implements Serializable {
     @Column(name = "keywords")
     private String keyWords;
 
-   /* @ManyToOne
-    private Category category;
-
-    @ManyToOne
-    private Group group;
-
-    @ManyToOne
-    private Company company;*/
-
     @Column (name = "category_id")
     private Long categoryId;
 

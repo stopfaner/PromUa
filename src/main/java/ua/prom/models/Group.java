@@ -7,20 +7,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by denys on 27.02.16.
  */
 @Entity
-@Table(name = "product_group")
+@Table(name = "group_filtered")
 @XmlRootElement
-@NamedQuery(name = "Groups.getAll", query = "SELECT c FROM product_group c")
+//@NamedQuery(name = "Groups.getAll", query = "SELECT c FROM product_group c")
 public class Group {
 
-    @Column(name = "id")
+    @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-    @Column(name = "name")
+    @Column (name = "name")
     private String name;
 
-    @ManyToOne
-    private Company company;
+    @Column (name = "company_id")
+    private Long companyId;
 
     public Group() {
 
@@ -42,11 +42,11 @@ public class Group {
         this.name = name;
     }
 
-    public Company getCompany() {
-        return company;
+    public Long getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 }

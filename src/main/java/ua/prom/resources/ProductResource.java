@@ -2,7 +2,9 @@ package ua.prom.resources;
 
 import ua.prom.core.EntityConfig;
 import ua.prom.models.Company;
+import ua.prom.models.Group;
 import ua.prom.models.Product;
+import ua.prom.models.ProductId;
 import ua.prom.services.ProductService;
 
 import javax.persistence.EntityManager;
@@ -33,35 +35,30 @@ public class ProductResource {
     }
 
     @GET
-    @Path("/count")
-    public Long getProductsCount (@QueryParam("id") Long companyId) {
+    @Path("/group")
+    public Group getGroup(@QueryParam("id") Long id) {
         if (service == null)
             service = ProductService.getService();
-        return service.getProductCount(companyId);
+        return service.getGroupById(id);
     }
 
     @GET
-    @Path("/single")
-    public Product getMessage(@QueryParam("id") Long id) {
-        if (eManager == null)
-            eManager = EntityConfig.getInstance();
-        Product singleProduct;
-        try {
-            singleProduct = eManager.find(Product.class, id);
-        } catch (NullPointerException ex) {
-            singleProduct = new Product();
-        }
-        return singleProduct;
+    @Path("/product")
+    public ProductId getProductById(@QueryParam("id") Long id) {
+        if (service == null)
+            service = ProductService.getService();
+        return service.getProductById(id);
     }
 
     @GET
-    @Path("/company")
-    public Company getCompany() {
-        if (eManager == null)
-            eManager = EntityConfig.getInstance();
-        return eManager.find(Company.class, new Long(132569));
+    @Path("/tag")
+    public List<Product> getProductByTag(@QueryParam("tag") String pattern,
+                                         @QueryParam("limit") int limit,
+                                         @QueryParam("offset") int offset) {
+        if (service == null)
+            service = ProductService.getService();
+        return service.getProductByTag(pattern, limit, offset);
     }
-
 
 
 }

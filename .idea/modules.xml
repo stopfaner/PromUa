@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/target/DB_ORM.iml" filepath="$PROJECT_DIR$/target/DB_ORM.iml" />
       <module fileurl="file://$PROJECT_DIR$/PromUa.iml" filepath="$PROJECT_DIR$/PromUa.iml" />
     </modules>
   </component>
